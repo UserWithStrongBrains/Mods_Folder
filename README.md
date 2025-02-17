@@ -6,3 +6,6 @@ REMINDER! after pasting mods, you need restart your client.
 the winrar download page: https://www.win-rar.com/postdownload.html?&L=4
 
 (only if you unable to unpack it)
+
+my server:
+Max_1111.aternos.me:24313
