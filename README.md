@@ -9,3 +9,4 @@ the winrar download page: https://www.win-rar.com/postdownload.html?&L=4
 
 my server:
 Max_1111.aternos.me:24313
+playing everyday at 21:00 to 23:00 gmt +2.
