@@ -1,33 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Joining Roblox...</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joining Server...</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .btn {
+            background-color: #00b06f; /* Roblox Green */
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+        }
+        .btn:hover { background-color: #00915b; }
+        .debug { color: #888; font-size: 12px; margin-top: 20px; }
+    </style>
 </head>
-<body style="background-color: #1a1a1a; color: white; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <h1>Launching Roblox...</h1>
-    <p>If the game doesn't open, <a id="link" href="#">click here</a>.</p>
+<body>
+    <h1>🚀 Launching Roblox...</h1>
+    <p>We are putting you in the server.</p>
+    
+    <a id="launch-btn" class="btn" href="#">Click here to Join</a>
+
+    <p class="debug" id="status">Waiting for data...</p>
 
     <script>
-        // 1. Get the URL parameters (placeId and jobId)
+        // 1. Grab IDs from the URL
         const params = new URLSearchParams(window.location.search);
         const placeId = params.get('placeId');
         const jobId = params.get('jobId');
+        const statusText = document.getElementById("status");
+        const launchBtn = document.getElementById("launch-btn");
 
         if (placeId && jobId) {
-            // 2. Construct the magic Roblox launch link
-            const robloxLink = `roblox://experiences/start?placeId=${placeId}&gameInstanceId=${jobId}`;
+            // 2. Create the deep link
+            const robloxUrl = `roblox://experiences/start?placeId=${placeId}&gameInstanceId=${jobId}`;
             
-            // 3. Set the manual link (in case auto-redirect fails)
-            document.getElementById("link").href = robloxLink;
+            statusText.innerText = `Target: ${placeId} / ${jobId}`;
+            
+            // 3. Set the button link (Manual Backup)
+            launchBtn.href = robloxUrl;
 
-            // 4. Trigger the redirect immediately
-            window.location.href = robloxLink;
+            // 4. Attempt Auto-Launch
+            setTimeout(() => {
+                window.location.href = robloxUrl;
+            }, 1000); // Wait 1 second to let page load first
             
-            // Optional: Close this tab after a few seconds
-            setTimeout(() => { window.close(); }, 5000);
         } else {
-            document.body.innerHTML = "<h1>Error: Missing Game Details</h1>";
+            statusText.innerText = "Error: No Game ID found in URL.";
+            launchBtn.style.display = "none";
+            document.body.innerHTML += "<p>Go back to Discord and try again.</p>";
         }
     </script>
 </body>
