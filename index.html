@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joining Roblox...</title>
+    <meta charset="utf-8">
+</head>
+<body style="background-color: #1a1a1a; color: white; font-family: sans-serif; text-align: center; padding-top: 50px;">
+    <h1>Launching Roblox...</h1>
+    <p>If the game doesn't open, <a id="link" href="#">click here</a>.</p>
+
+    <script>
+        // 1. Get the URL parameters (placeId and jobId)
+        const params = new URLSearchParams(window.location.search);
+        const placeId = params.get('placeId');
+        const jobId = params.get('jobId');
+
+        if (placeId && jobId) {
+            // 2. Construct the magic Roblox launch link
+            const robloxLink = `roblox://experiences/start?placeId=${placeId}&gameInstanceId=${jobId}`;
+            
+            // 3. Set the manual link (in case auto-redirect fails)
+            document.getElementById("link").href = robloxLink;
+
+            // 4. Trigger the redirect immediately
+            window.location.href = robloxLink;
+            
+            // Optional: Close this tab after a few seconds
+            setTimeout(() => { window.close(); }, 5000);
+        } else {
+            document.body.innerHTML = "<h1>Error: Missing Game Details</h1>";
+        }
+    </script>
+</body>
+</html>
