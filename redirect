@@ -1,1 +1,12 @@
-well uh, can you click it? https://create.roblox.com/store/asset/126115714977424
+<!DOCTYPE html>
+<html>
+<head>
+<title>Redirect</title>
+<script>
+window.location.replace("https://create.roblox.com/store/asset/126115714977424");
+</script>
+</head>
+<body>
+Redirecting...
+</body>
+</html>
